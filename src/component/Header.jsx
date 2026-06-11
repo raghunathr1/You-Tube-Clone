@@ -3,7 +3,9 @@ import { FaSearch } from "react-icons/fa";
 import { CgMathPlus } from "react-icons/cg";
 import { IoMdNotificationsOutline } from "react-icons/io";
 import { GrMicrophone } from "react-icons/gr";
+import { FaUserAlt } from "react-icons/fa";
 import FilterButton from "./FilterButton";
+import { Link } from "react-router-dom";
 function Header({ toggleHide, search, setSearch, category, setCategory }){
     return(
         <>
@@ -21,7 +23,8 @@ function Header({ toggleHide, search, setSearch, category, setCategory }){
                 <button id="microPhone"><GrMicrophone /></button>                
             </div>
             <div id="endBtn">
-                <button id="createBtn"><CgMathPlus />Create</button>
+                <Link to="/register"><button className="createBtn"><FaUserAlt /> Sign In </button></Link>
+                <button className="createBtn"><CgMathPlus />Create</button>
                 <button id="notification"><IoMdNotificationsOutline /></button>
                 <button>😀</button>
             </div>
