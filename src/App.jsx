@@ -1,26 +1,36 @@
-import './App.css'
-import { FaYoutube } from "react-icons/fa";
-import Home from './component/Home';
-import { BrowserRouter, Routes, Route } from 'react-router-dom';
-import VideoPlayer from './component/VideoPlayer';
-import Login from './component/pages/Login';
-import Register from './component/pages/Register';
+import "./App.css";
+import Home from "./component/Home";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+import ChannelPage from "./component/pages/ChannelPage";
+import VideoPlayer from "./component/VideoPlayer";
+import Login from "./component/pages/Login";
+import Register from "./component/pages/Register";
+import CreateChannel from "./component/pages/CreateChannel";
+import UploadVideo from "./component/pages/UploadVideo";
+import EditVideo from "./component/pages/EditVideo";
 
 function App() {
-  
   return (
-    <>
     <BrowserRouter>
-    <Routes>
-      <Route path='/' element={<Home />}></Route>
-      <Route path='/video/:id' element={<VideoPlayer />}></Route> 
-      <Route path='/register' element={<Register />}></Route>
-      <Route path='/login' element={<Login />}></Route>
-    </Routes>
-    </BrowserRouter>
+      <Routes>
+        <Route path="/" element={<Home />} />
 
-    </>
-  )
+        <Route path="/video/:id" element={<VideoPlayer />} />
+
+        <Route path="/register" element={<Register />} />
+
+        <Route path="/login" element={<Login />} />
+
+        <Route path="/create-channel" element={<CreateChannel />} />
+
+        <Route path="/upload-video" element={<UploadVideo />} />
+
+        <Route path="/channel/:id" element={<ChannelPage />} />
+
+        <Route path="/edit-video/:id" element={<EditVideo />} />
+      </Routes>
+    </BrowserRouter>
+  );
 }
 
-export default App
+export default App;

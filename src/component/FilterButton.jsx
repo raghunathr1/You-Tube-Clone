@@ -8,7 +8,6 @@ function FilterButton({category, setCategory}){
         <button className="filtBtn" onClick={()=>setCategory("Coding Education")}>Coding Education</button>
         <button className="filtBtn" onClick={()=>setCategory("Travel and Vlog")}>Travel and Vlog</button>
         <button className="filtBtn" onClick={()=>setCategory("Food and Cooking")}>Food And Cooking</button>
-        <button className="filtBtn" onClick={()=>setCategory("Science and Technology")}>Science and Technology</button>
         <button className="filtBtn" onClick={()=>setCategory("Comedy")}>Comedy</button>
         </div>
     )

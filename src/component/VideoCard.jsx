@@ -2,7 +2,7 @@ import { Link } from "react-router-dom"
 
 function VideoCard({ video }){
     return(
-        <Link to={`video/${video.videoId}`} style={{textDecoration: "none", color: "black"}}>
+        <Link to={`video/${video._id}`} style={{textDecoration: "none", color: "black"}}>
         <div className="videoCard">
              <img src={video.thumbnailUrl} alt={video.title} className="thumbnail" />
               <div className="videoInfo">
