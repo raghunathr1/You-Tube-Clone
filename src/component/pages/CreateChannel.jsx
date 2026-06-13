@@ -1,9 +1,10 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-
+import axios from "axios";
 function CreateChannel() {
   const [channelName, setChannelName] = useState("");
   const [description, setDescription] = useState("");
+  const [channelBanner, setChannelBanner] = useState("");
 
   const navigate = useNavigate();
 
@@ -11,43 +12,33 @@ function CreateChannel() {
     try {
       const token = localStorage.getItem("token");
 
-      const response = await fetch(
+      const response = await axios.post(
         "http://localhost:4000/api/channel/create",
         {
-          method: "POST",
+          channelName,
+          description,
+          channelBanner,
+        },
+        {
           headers: {
-            "Content-Type": "application/json",
             authorization: token,
           },
-          body: JSON.stringify({
-            channelName,
-            description,
-          }),
-        }
+        },
       );
 
-      const data = await response.json();
+      const data = response.data;
 
-      if (response.ok) {
-        localStorage.setItem(
-          "channelId",
-          data.channel._id
-        );
+      localStorage.setItem("channelId", data.channel._id);
 
-        localStorage.setItem(
-          "channelName",
-          data.channel.channelName
-        );
+      localStorage.setItem("channelName", data.channel.channelName);
 
-        alert(data.message);
+      alert(data.message);
 
-        navigate("/upload-video");
-      } else {
-        alert(data.message);
-      }
+      navigate("/upload-video");
 
       setChannelName("");
       setDescription("");
+      setChannelBanner("");
     } catch (error) {
       console.log(error);
       alert("Something went wrong");
@@ -62,9 +53,7 @@ function CreateChannel() {
         type="text"
         placeholder="Channel Name"
         value={channelName}
-        onChange={(e) =>
-          setChannelName(e.target.value)
-        }
+        onChange={(e) => setChannelName(e.target.value)}
       />
 
       <br />
@@ -73,17 +62,19 @@ function CreateChannel() {
       <textarea
         placeholder="Description"
         value={description}
-        onChange={(e) =>
-          setDescription(e.target.value)
-        }
+        onChange={(e) => setDescription(e.target.value)}
+      />
+      <input
+        type="text"
+        placeholder="Channel Banner URL"
+        value={channelBanner}
+        onChange={(e) => setChannelBanner(e.target.value)}
       />
 
       <br />
       <br />
 
-      <button onClick={handleCreateChannel}>
-        Create Channel
-      </button>
+      <button onClick={handleCreateChannel}>Create Channel</button>
     </div>
   );
 }

@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
+import axios from "axios";
 function ChannelPage() {
   const { id } = useParams();
   const navigate = useNavigate();
@@ -8,16 +9,17 @@ function ChannelPage() {
   const [videos, setVideos] = useState([]);
 
   useEffect(() => {
-    fetch(`http://localhost:4000/api/channel/${id}`)
-      .then((res) => res.json())
-      .then((data) => setChannel(data))
+    axios
+      .get(`http://localhost:4000/api/channel/${id}`)
+      .then((res) => setChannel(res.data))
       .catch((err) => console.log(err));
 
-    fetch(`http://localhost:4000/api/videos/channel/${id}`)
-      .then((res) => res.json())
-      .then((data) => setVideos(data))
+    axios
+      .get(`http://localhost:4000/api/videos/channel/${id}`)
+      .then((res) => setVideos(res.data))
       .catch((err) => console.log(err));
   }, [id]);
+
   const handleDelete = async (id) => {
     const confirmDelete = window.confirm(
       "Are you sure you want to delete this video?",
@@ -26,8 +28,7 @@ function ChannelPage() {
     if (!confirmDelete) return;
 
     try {
-      await fetch(`http://localhost:4000/api/videos/${id}`, {
-        method: "DELETE",
+      await axios.delete(`http://localhost:4000/api/videos/${id}`, {
         headers: {
           Authorization: localStorage.getItem("token"),
         },
@@ -42,7 +43,11 @@ function ChannelPage() {
   };
   return (
     <div style={{ padding: "20px" }}>
+      <img src={channel.channelBanner} alt="banner" width="100%" height="220" />
+
       <h1>{channel.channelName}</h1>
+
+      <p>{channel.subscribers} Subscribers</p>
 
       <p>{channel.description}</p>
 

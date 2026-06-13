@@ -1,5 +1,6 @@
 import { useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
+import axios from "axios";
 
 function VideoPlayer() {
   const { id } = useParams();
@@ -15,9 +16,11 @@ function VideoPlayer() {
   const [editText, setText] = useState("");
 
   useEffect(() => {
-    fetch(`http://localhost:4000/api/videos/${id}`)
-      .then((res) => res.json())
-      .then((data) => {
+    axios
+      .get(`http://localhost:4000/api/videos/${id}`)
+      .then((res) => {
+        const data = res.data;
+
         setVideo(data);
         setLikes(data.likes || 0);
         setDislikes(data.dislikes || 0);
@@ -30,74 +33,53 @@ function VideoPlayer() {
     return <h2>Loading...</h2>;
   }
 
- const handleAddComment = async () => {
-  if (!newComment.trim()) return;
+  const handleAddComment = async () => {
+    if (!newComment.trim()) return;
 
-  try {
-    const response = await fetch(
-      `http://localhost:4000/api/videos/${id}/comment`,
-      {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
+    try {
+      const response = await axios.post(
+        `http://localhost:4000/api/videos/${id}/comment`,
+        {
           text: newComment,
-        }),
-      }
-    );
+        },
+      );
 
-    const updatedVideo = await response.json();
-
-    setComment(updatedVideo.comments);
-    setNewComment("");
-  } catch (error) {
-    console.log(error);
-  }
-};
+      setComment(response.data.comments);
+      setNewComment("");
+    } catch (error) {
+      console.log(error);
+    }
+  };
 
   const handleDeleteComment = async (index) => {
-  try {
-    const response = await fetch(
-      `http://localhost:4000/api/videos/${id}/comment/${index}`,
-      {
-        method: "DELETE",
-      }
-    );
+    try {
+      const response = await axios.delete(
+        `http://localhost:4000/api/videos/${id}/comment/${index}`,
+      );
 
-    const updatedVideo = await response.json();
-
-    setComment(updatedVideo.comments);
-  } catch (error) {
-    console.log(error);
-  }
-};
+      setComment(response.data.comments);
+    } catch (error) {
+      console.log(error);
+    }
+  };
 
   const handleSaveComment = async () => {
-  try {
-    const response = await fetch(
-      `http://localhost:4000/api/videos/${id}/comment/${editIndex}`,
-      {
-        method: "PUT",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
+    try {
+      const response = await axios.put(
+        `http://localhost:4000/api/videos/${id}/comment/${editIndex}`,
+        {
           text: editText,
-        }),
-      }
-    );
+        },
+      );
 
-    const updatedVideo = await response.json();
+      setComment(response.data.comments);
 
-    setComment(updatedVideo.comments);
-
-    setIndex(null);
-    setText("");
-  } catch (error) {
-    console.log(error);
-  }
-};
+      setIndex(null);
+      setText("");
+    } catch (error) {
+      console.log(error);
+    }
+  };
 
   return (
     <div>

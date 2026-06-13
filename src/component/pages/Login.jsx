@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
-
+import axios from "axios";
 function Login() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -9,26 +9,19 @@ function Login() {
 
   const handleLogin = async () => {
     try {
-      const response = await fetch("http://localhost:4000/api/auth/login", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
+      const response = await axios.post(
+        "http://localhost:4000/api/auth/login",
+        {
           email,
           password,
-        }),
-      });
-      const data = await response.json();
-      if (!response.ok) {
-        alert(data.message);
-        return;
-      }
+        },
+      );
 
-      localStorage.setItem("token", data.token);
-      localStorage.setItem("username", data.name);
+      localStorage.setItem("token", response.data.token);
 
-      alert(data.message);
+      localStorage.setItem("username", response.data.name);
+
+      alert(response.data.message);
 
       navigate("/");
     } catch (error) {

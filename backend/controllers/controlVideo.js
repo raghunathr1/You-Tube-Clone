@@ -1,5 +1,5 @@
 const Video = require("../models/modelVideo");
-
+const Channel = require("../models/channel");
 // Get All Videos
 const getAllVideos = async (req, res) => {
   try {
@@ -35,22 +35,34 @@ const getVideoById = async (req, res) => {
 // Create Video
 const createVideo = async (req, res) => {
   try {
+
     const video = await Video.create({
       ...req.body,
       owner: req.user.userId,
     });
 
+    await Channel.findByIdAndUpdate(
+      req.body.channelId,
+      {
+        $push: {
+          videos: video._id,
+        },
+      }
+    );
+
     res.status(201).json({
       message: "Video Added Successfully",
       video,
     });
+
   } catch (error) {
+
     res.status(500).json({
       message: error.message,
     });
+
   }
 };
-
 // Get Videos By Channel
 const getVideosByChannel = async (req, res) => {
   try {

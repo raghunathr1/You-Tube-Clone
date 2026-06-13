@@ -2,7 +2,7 @@ import Header from "./Header";
 import Slidebar from "./Slidebar";
 import VideoCard from "./VideoCard";
 import { useState, useEffect } from "react";
-
+import axios from "axios";
 function Home() {
   const [showSide, setShowSide] = useState(true);
   const [search, setSearch] = useState("");
@@ -10,9 +10,9 @@ function Home() {
   const [videos, setVideos] = useState([]);
 
   useEffect(() => {
-    fetch("http://localhost:4000/api/videos")
-      .then((res) => res.json())
-      .then((data) => setVideos(data))
+    axios
+      .get("http://localhost:4000/api/videos")
+      .then((res) => setVideos(res.data))
       .catch((err) => console.log(err));
   }, []);
 
@@ -22,9 +22,7 @@ function Home() {
       .includes(search.toLowerCase());
 
     const matchCategory =
-      category === "All"
-        ? true
-        : video.category === category;
+      category === "All" ? true : video.category === category;
 
     return matchSearch && matchCategory;
   });
@@ -37,23 +35,15 @@ function Home() {
         setSearch={setSearch}
         category={category}
         setCategory={setCategory}
+        showSide={showSide}
       />
 
       <div className="mainContainer">
-        {showSide && <Slidebar />}
+        <Slidebar showSide={showSide} />
 
-        <div
-          className={
-            showSide
-              ? "videoGrid"
-              : "videoGridFull"
-          }
-        >
+        <div className={showSide ? "videoGrid" : "videoGridFull"}>
           {filteredVideo.map((video) => (
-            <VideoCard
-              key={video._id}
-              video={video}
-            />
+            <VideoCard key={video._id} video={video} />
           ))}
         </div>
       </div>

@@ -1,121 +1,293 @@
-/* Header */
+/* =========================
+   HEADER
+========================= */
+
+.nav {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 60px;
+
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  background: white;
+  z-index: 1000;
+
+  padding: 0 15px;
+  box-sizing: border-box;
+}
+
+.logoD {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.logo img {
+  margin-top: 5px;
+}
+
 .headInput {
-    width: 550px;
-    height: 41px;
-    border-right: none;
-    border-radius: 40px 0 0 40px;
-    padding: 0 16px;
-    font-size: 16px;
-    border: solid rgb(135, 135, 141) 1px;
+  width: 550px;
+  height: 41px;
+
+  padding: 0 16px;
+
+  font-size: 16px;
+
+  border: 1px solid rgb(135, 135, 141);
+  border-right: none;
+
+  border-radius: 40px 0 0 40px;
 }
+
 #headBtn {
-    width: 64px;
-    height: 42px;
-    border-radius: 0 40px 40px 0;
-    font-size: 18px;
-    border: solid rgb(135, 135, 141) 1px;
-}
-.nav{
-    display: flex;
-    justify-content:  space-between;
-}
-.logo img{
-    margin-top: 10px;
-}
-.logoD{
-    display: flex;
-    gap: 10px;
-}
-#endBtn{
-    display: flex;
-    gap: 10px;
-    height: 30px;
-}
-#microPhone{
-    margin-left: 10px;
-    height: 50px;
-    width: 50px;
-    border-radius: 50%;
-    border: none;
-    font-size: larger;
-}
-.createBtn{
-    border-radius: 40px 40px 40px 40px;
-    height: 40px;
-    width: 90px;
-    font-weight: 700;
-    border: none;
-}
-#notification{
-    background-color: white;
-    height: 40px;
-    width: 40px;
-    font-size:xx-large;
-    border: none;
+  width: 64px;
+  height: 42px;
+
+  font-size: 18px;
+
+  border: 1px solid rgb(135, 135, 141);
+
+  border-radius: 0 40px 40px 0;
 }
 
-/* FilterButton Page */
-.filtBtn{
-    border: none;
-    margin: 15px;
-    font-family:'Roboto', 'sans-serif';
-    font-size: 15px;
-    font-weight: 600;
-    height: 30px;
-    border-radius: 8px;
-}
-.filterPage{
-    margin-left: 40vh;
+#microPhone {
+  margin-left: 10px;
+
+  width: 50px;
+  height: 50px;
+
+  border: none;
+  border-radius: 50%;
+
+  font-size: larger;
 }
 
+#endBtn {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
 
+.createBtn {
+  height: 40px;
+  min-width: 90px;
 
-/* slidebar */
-.slideItem{
-    display: block;
-    font-size: large;
-    margin: 9px;
+  border: none;
+  border-radius: 40px;
+
+  font-weight: 700;
+
+  cursor: pointer;
 }
-.slidebar{
-    height: 540px;
-    width: 35vh;
-    position: fixed;
-    left: 0;
-    top: 60px;
-    padding:10px ;
-    overflow-y: auto;
+
+#notification {
+  width: 40px;
+  height: 40px;
+
+  border: none;
+  background: white;
+
+  font-size: 28px;
+
+  cursor: pointer;
 }
-.sidebar h3 {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    padding: 10px;
-    border-radius: 10px;
-    cursor: pointer;
+
+/* =========================
+   FILTER BUTTONS
+========================= */
+
+.filterPage {
+  position: fixed;
+
+  top: 60px;
+  left: 240px;
+  right: 0;
+
+  background: white;
+
+  z-index: 999;
+
+  padding: 10px;
 }
-.sidebar h3:hover {
-    background-color: #f2f2f2;
+
+.filtBtn {
+  border: none;
+
+  margin: 8px;
+
+  height: 32px;
+
+  padding: 0 15px;
+
+  border-radius: 8px;
+
+  font-size: 15px;
+  font-weight: 600;
+
+  cursor: pointer;
 }
+.filterPage {
+  position: fixed;
+  top: 60px;
+  left: 240px;
+  right: 0;
+  background: white;
+  z-index: 999;
+  padding: 10px;
+
+  transition: all 0.3s ease;
+}
+
+.filterPageFull {
+  position: fixed;
+  top: 60px;
+  left: 80px;
+  right: 0;
+  background: white;
+  z-index: 999;
+  padding: 10px;
+
+  transition: all 0.3s ease;
+}
+
+/* =========================
+   MAIN LAYOUT
+========================= */
+
+.mainContainer {
+  display: flex;
+}
+
+/* =========================
+   SIDEBAR OPEN
+========================= */
+
+.slidebar {
+  position: fixed;
+
+  top: 60px;
+  left: 0;
+
+  width: 240px;
+  height: calc(100vh - 60px);
+
+  overflow-y: auto;
+
+  background: white;
+
+  padding: 10px;
+  box-sizing: border-box;
+}
+
+.slidebar h3 {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+
+  padding: 10px;
+
+  border-radius: 10px;
+
+  cursor: pointer;
+}
+
+.slidebar h3:hover {
+  background-color: #f2f2f2;
+}
+
 .slideItem {
-    display: block;
-    padding: 10px;
-    cursor: pointer;
-    border-radius: 10px;
+  display: block;
+
+  padding: 10px;
+
+  border-radius: 10px;
+
+  cursor: pointer;
 }
 
 .slideItem:hover {
-    background-color: #f2f2f2;
+  background-color: #f2f2f2;
 }
 
-/* Video Card and Grid  */
+/* =========================
+   SIDEBAR COLLAPSED
+========================= */
+
+.slidebarCollapsed {
+  position: fixed;
+
+  top: 60px;
+  left: 0;
+
+  width: 80px;
+  height: calc(100vh - 60px);
+
+  background: white;
+
+  padding: 10px;
+  box-sizing: border-box;
+}
+
+.slidebarCollapsed h3 {
+  display: flex;
+  justify-content: center;
+
+  font-size: 24px;
+
+  margin: 20px 0;
+
+  cursor: pointer;
+}
+
+/* =========================
+   VIDEO GRID (SIDEBAR OPEN)
+========================= */
+
 .videoGrid {
   flex: 1;
+
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+
+  grid-template-columns:
+    repeat(auto-fill, minmax(320px, 1fr));
+
   gap: 20px;
+
   padding: 20px;
-  margin-left: 40vh;
+
+  margin-left: 240px;
+  margin-top: 120px;
 }
+
+/* =========================
+   VIDEO GRID (SIDEBAR CLOSED)
+========================= */
+
+.videoGridFull {
+  flex: 1;
+
+  display: grid;
+
+  grid-template-columns:
+    repeat(auto-fill, minmax(320px, 1fr));
+
+  gap: 20px;
+
+  padding: 20px;
+
+  margin-left: 80px;
+  margin-top: 120px;
+}
+
+/* =========================
+   VIDEO CARD
+========================= */
+
 .videoCard {
   width: 100%;
   cursor: pointer;
@@ -123,9 +295,12 @@
 
 .thumbnail {
   width: 100%;
-  height: 180px;
+
+  aspect-ratio: 16/9;
+
   object-fit: cover;
-  border-radius: 10px;
+
+  border-radius: 12px;
 }
 
 .videoInfo {
@@ -140,18 +315,4 @@
 .videoInfo p {
   color: gray;
   margin: 2px 0;
-}
-.mainContainer {
-  display: flex;
-}
-
-.slidebar {
-  width: 240px;
-  min-width: 240px;
-}
-.thumbnail {
-  width: 100%;
-  aspect-ratio: 16/9;
-  object-fit: cover;
-  border-radius: 12px;
 }

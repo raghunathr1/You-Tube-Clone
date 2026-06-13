@@ -14,13 +14,12 @@ function Header({
   setSearch,
   category,
   setCategory,
+  showSide,
 }) {
   const username = localStorage.getItem("username");
 
   const isLoggedIn =
-    username &&
-    username !== "undefined" &&
-    username !== "null";
+    username && username !== "undefined" && username !== "null";
 
   const [showMenu, setShowMenu] = useState(false);
 
@@ -46,8 +45,7 @@ function Header({
       return;
     }
 
-    const channelId =
-      localStorage.getItem("channelId");
+    const channelId = localStorage.getItem("channelId");
 
     if (!channelId) {
       navigate("/create-channel");
@@ -57,8 +55,7 @@ function Header({
   };
 
   const handleMyChannel = () => {
-    const channelId =
-      localStorage.getItem("channelId");
+    const channelId = localStorage.getItem("channelId");
 
     if (!channelId) {
       alert("Please Create Channel First");
@@ -100,9 +97,7 @@ function Header({
             placeholder="Search"
             className="headInput"
             value={search}
-            onChange={(e) =>
-              setSearch(e.target.value)
-            }
+            onChange={(e) => setSearch(e.target.value)}
           />
 
           <button id="headBtn">
@@ -123,9 +118,7 @@ function Header({
             >
               <button
                 className="createBtn"
-                onClick={() =>
-                  setShowMenu(!showMenu)
-                }
+                onClick={() => setShowMenu(!showMenu)}
               >
                 {username}
               </button>
@@ -147,25 +140,13 @@ function Header({
                     zIndex: 1000,
                   }}
                 >
-                  <button
-                    onClick={handleMyChannel}
-                  >
-                    My Channel
-                  </button>
+                  <button onClick={handleMyChannel}>My Channel</button>
 
-                  <button
-                    onClick={() =>
-                      navigate("/upload-video")
-                    }
-                  >
+                  <button onClick={() => navigate("/upload-video")}>
                     Upload Video
                   </button>
 
-                  <button
-                    onClick={handleLogout}
-                  >
-                    Logout
-                  </button>
+                  <button onClick={handleLogout}>Logout</button>
                 </div>
               )}
             </div>
@@ -177,10 +158,7 @@ function Header({
             </Link>
           )}
 
-          <button
-            className="createBtn"
-            onClick={handleCreate}
-          >
+          <button className="createBtn" onClick={handleCreate}>
             <CgMathPlus /> Create
           </button>
 
@@ -193,6 +171,7 @@ function Header({
       <FilterButton
         category={category}
         setCategory={setCategory}
+        showSide={showSide}
       />
     </>
   );

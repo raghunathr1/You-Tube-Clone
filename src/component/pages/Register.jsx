@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
-
+import axios from "axios";
 function Register() {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
@@ -10,19 +10,17 @@ function Register() {
 
   const handleRegister = async () => {
     try {
-      const register = await fetch("http://localhost:4000/api/auth/register", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
+      const response = await axios.post(
+        "http://localhost:4000/api/auth/register",
+        {
           name,
           email,
           password,
-        }),
-      });
-      const data = await register.json();
-      alert(data.message);
+        },
+      );
+
+      alert(response.data.message);
+
       navigate("/login");
     } catch (error) {
       console.log(error);

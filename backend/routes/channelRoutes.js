@@ -10,11 +10,12 @@ router.post(
   authMiddleware,
   async (req, res) => {
     try {
-      const { channelName, description } = req.body;
+      const { channelName, description , channelBanner } = req.body;
 
       const channel = await Channel.create({
         channelName,
         description,
+        channelBanner,
         owner: req.user.userId,
       });
 
