@@ -1,6 +1,4 @@
-/* =========================
-   HEADER
-========================= */
+   /* HEADER */
 
 .nav {
   position: fixed;
@@ -97,9 +95,8 @@
   cursor: pointer;
 }
 
-/* =========================
-   FILTER BUTTONS
-========================= */
+
+   /* FILTER BUTTONS */
 
 .filterPage {
   position: fixed;
@@ -142,7 +139,10 @@
 
   transition: all 0.3s ease;
 }
-
+.searchContainer{
+  display:flex;
+  align-items:center;
+}
 .filterPageFull {
   position: fixed;
   top: 60px;
@@ -155,17 +155,31 @@
   transition: all 0.3s ease;
 }
 
-/* =========================
-   MAIN LAYOUT
-========================= */
+
+.filterPage::-webkit-scrollbar,
+.filterPageFull::-webkit-scrollbar {
+  display: none;
+}
+.filterPage,
+.filterPageFull {
+  overflow-x: auto;
+  white-space: nowrap;
+}
+.filterPage {
+  left: 240px;
+}
+
+.filterPageFull {
+  left: 80px;
+}
+
+/* MAIN LAYOUT */
 
 .mainContainer {
   display: flex;
 }
 
-/* =========================
-   SIDEBAR OPEN
-========================= */
+/* SIDEBAR OPEN */
 
 .slidebar {
   position: fixed;
@@ -214,10 +228,6 @@
   background-color: #f2f2f2;
 }
 
-/* =========================
-   SIDEBAR COLLAPSED
-========================= */
-
 .slidebarCollapsed {
   position: fixed;
 
@@ -244,49 +254,29 @@
   cursor: pointer;
 }
 
-/* =========================
-   VIDEO GRID (SIDEBAR OPEN)
-========================= */
-
+   /* VIDEO GRID (SIDEBAR OPEN) */
 .videoGrid {
-  flex: 1;
-
   display: grid;
-
-  grid-template-columns:
-    repeat(auto-fill, minmax(320px, 1fr));
-
+  grid-template-columns: repeat(3, 1fr);
   gap: 20px;
-
-  padding: 20px;
-
   margin-left: 240px;
   margin-top: 120px;
+  padding: 20px;
 }
 
-/* =========================
-   VIDEO GRID (SIDEBAR CLOSED)
-========================= */
-
 .videoGridFull {
-  flex: 1;
-
   display: grid;
-
-  grid-template-columns:
-    repeat(auto-fill, minmax(320px, 1fr));
+  grid-template-columns: repeat(4, 1fr);
 
   gap: 20px;
-
-  padding: 20px;
 
   margin-left: 80px;
   margin-top: 120px;
+  padding: 20px;
 }
 
-/* =========================
-   VIDEO CARD
-========================= */
+
+   /* VIDEO CARD */
 
 .videoCard {
   width: 100%;
@@ -307,12 +297,241 @@
   padding: 8px 0;
 }
 
-.videoInfo h3 {
-  font-size: 16px;
-  margin-bottom: 5px;
+
+/* Mobile Responsive */
+@media (max-width:768px){
+
+  .nav{
+    display:flex;
+    flex-wrap:wrap;
+    justify-content:flex-start;
+    height:auto;
+    padding:10px 15px;
+  }
+
+  #endBtn{
+    order:2;
+    margin-left:125px;
+    gap:5px;
+  }
+
+  .searchContainer{
+    order:3;
+    width:100%;
+    display:flex;
+    align-items:center;
+    margin-top:10px;
+  }
+
+  .headInput{
+    width:365px;
+  }
+
+  .videoGrid,
+  .videoGridFull{
+    margin-left:0;
+    margin-top:190px;
+    display:grid;
+    grid-template-columns:1fr;
+    gap:20px;
+    padding:10px;
+  }
+
+  .videoCard{
+    width:450px;
+  }
+   .filterPage,
+  .filterPageFull {
+    top:120px;          
+    width:100%;
+    display:flex;      
+    align-items:center;
+    overflow-x:auto;
+  }
+
+  .filtBtn {
+    display: inline-block;
+    flex-shrink:0;      
+    margin-right:8px;
+  }
+  .uploadForm {
+    padding: 20px;
+  }
+
+  .uploadForm h1 {
+    font-size: 24px;
+  }
+
+  .uploadForm input,
+  .uploadForm textarea,
+  .uploadForm button {
+    font-size: 14px;
+  }
+  
+  
 }
 
-.videoInfo p {
-  color: gray;
-  margin: 2px 0;
+@media (min-width:769px) and (max-width:1024px){
+
+  .headInput{
+    width:250px;
+  }
+
+  .slidebar{
+    width:200px;
+  }
+
+  .videoGrid{
+    margin-left:200px;
+    grid-template-columns:repeat(2,1fr);
+  }
+
+  .videoGridFull{
+    margin-left:80px;
+    grid-template-columns:repeat(3,1fr);
+  }
+
+  .filterPage{
+    left:200px;
+  }
+
+  .filterPageFull{
+    left:80px;
+  }
+}
+   /* LOGIN PAGE */
+
+.login {
+  min-height: 100vh;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  background: #f9f9f9;
+
+  padding: 20px;
+}
+
+.authContainer {
+  width: 100%;
+  max-width: 420px;
+
+  background: white;
+
+  padding: 35px;
+
+  border-radius: 15px;
+
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.1);
+
+  display: flex;
+  flex-direction: column;
+
+  gap: 15px;
+}
+
+.authContainer h1 {
+  text-align: center;
+
+  color: #222;
+
+  margin-bottom: 15px;
+}
+
+.authContainer input {
+  width: 100%;
+
+  height: 45px;
+
+  padding: 0 15px;
+
+  border: 1px solid #ccc;
+  border-radius: 8px;
+
+  font-size: 15px;
+
+  box-sizing: border-box;
+}
+
+.authContainer input:focus {
+  outline: none;
+
+  border-color: #ff0000;
+}
+
+.authContainer button {
+  width: 100%;
+
+  height: 45px;
+
+  border: none;
+  border-radius: 8px;
+
+  background: #ff0000;
+  color: white;
+
+  font-size: 16px;
+  font-weight: 600;
+
+  cursor: pointer;
+
+  transition: 0.3s;
+}
+
+.authContainer button:hover {
+  background: #d90000;
+}
+
+.authContainer p {
+  text-align: center;
+
+  margin-top: 10px;
+
+  color: #555;
+}
+
+.authContainer a {
+  color: #ff0000;
+
+  text-decoration: none;
+
+  font-weight: 600;
+}
+
+.authContainer a:hover {
+  text-decoration: underline;
+}
+
+   /* TABLET */
+
+@media (max-width: 1024px) {
+
+  .authContainer {
+    max-width: 380px;
+  }
+
+}
+
+   /* MOBILE */
+
+@media (max-width: 768px) {
+
+  .login {
+    padding: 15px;
+  }
+
+  .authContainer {
+    padding: 25px 20px;
+  }
+
+  .authContainer h1 {
+    font-size: 24px;
+  }
+
+  .authContainer input,
+  .authContainer button {
+    height: 42px;
+  }
+
 }

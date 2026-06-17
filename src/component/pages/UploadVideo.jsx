@@ -56,7 +56,8 @@ function UploadVideo() {
   };
 
   return (
-    <div>
+    <div className="uploadVideo">
+      <div className="uploadForm">
       <h1>Upload Video</h1>
 
       <input
@@ -109,6 +110,7 @@ function UploadVideo() {
       <br />
 
       <button onClick={handleUpload}>Upload Video</button>
+      </div>
     </div>
   );
 }

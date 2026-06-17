@@ -1,26 +1,61 @@
-const express = require("express");
+import express from "express";
+import videoController from "../controllers/controlVideo.js";
+import authMiddleware from "../middleware/authMiddleware.js";
+
 const router = express.Router();
 
-const { getAllVideos, getVideoById, createVideo, getVideosByChannel, updateVideo, deleteVideo, addComment, editComment, deleteComment,} = require("../controllers/controlVideo");
+router.get("/", videoController.getAllVideos);
 
-const authMiddleware = require("../middleware/authMiddleware");
+router.get("/:id", videoController.getVideoById);
 
-router.get("/", getAllVideos);
+router.post(
+  "/upload",
+  authMiddleware,
+  videoController.createVideo
+);
 
-router.get("/:id", getVideoById);
+router.get(
+  "/channel/:channelId",
+  videoController.getVideosByChannel
+);
 
-router.post( "/upload", authMiddleware, createVideo);
+router.put(
+  "/:id",
+  authMiddleware,
+  videoController.updateVideo
+);
 
-router.get( "/channel/:channelId", getVideosByChannel);
+router.delete(
+  "/:id",
+  authMiddleware,
+  videoController.deleteVideo
+);
 
-router.put( "/:id", authMiddleware, updateVideo);
+router.post(
+  "/:id/comment",
+  videoController.addComment
+);
 
-router.delete( "/:id", authMiddleware, deleteVideo);
+router.put(
+  "/:id/comment/:commentIndex",
+  videoController.editComment
+);
 
-router.post( "/:id/comment", addComment);
+router.delete(
+  "/:id/comment/:commentIndex",
+  videoController.deleteComment
+);
 
-router.put( "/:id/comment/:commentIndex", editComment);
+router.put(
+  "/like/:id",
+  authMiddleware,
+  videoController.likeVideo
+);
 
-router.delete( "/:id/comment/:commentIndex", deleteComment);
+router.put(
+  "/dislike/:id",
+  authMiddleware,
+  videoController.dislikeVideo
+);
 
-module.exports = router;
+export default router;

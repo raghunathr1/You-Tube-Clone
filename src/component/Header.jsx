@@ -67,7 +67,7 @@ function Header({
   };
 
   return (
-    <>
+    <div className="mobileSearch">
       <nav className="nav">
         <div className="logoD">
           <button
@@ -91,7 +91,7 @@ function Header({
           </div>
         </div>
 
-        <div>
+        <div className="searchContainer">
           <input
             type="text"
             placeholder="Search"
@@ -173,7 +173,7 @@ function Header({
         setCategory={setCategory}
         showSide={showSide}
       />
-    </>
+    </div>
   );
 }
 

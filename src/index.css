@@ -1,0 +1,740 @@
+/* upload Video Section */
+
+.uploadVideo {
+  min-height: 80vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  background-color: #f9f9f9;
+  padding: 30px 15px;
+}
+
+.uploadForm {
+  width: 100%;
+  max-width: 650px;
+
+  background: white;
+
+  padding: 30px;
+
+  border-radius: 15px;
+
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+}
+
+.uploadForm h1 {
+  text-align: center;
+  margin-bottom: 25px;
+
+  color: #222;
+}
+
+.uploadForm input,
+.uploadForm textarea {
+  width: 100%;
+
+  padding: 12px 15px;
+
+  border: 1px solid #d3d3d3;
+  border-radius: 10px;
+
+  font-size: 15px;
+
+  box-sizing: border-box;
+
+  outline: none;
+
+  transition: 0.3s;
+}
+
+.uploadForm input:focus,
+.uploadForm textarea:focus {
+  border-color: #ff0000;
+}
+
+.uploadForm textarea {
+  min-height: 120px;
+  resize: vertical;
+}
+
+.uploadForm button {
+  width: 100%;
+
+  height: 45px;
+
+  border: none;
+  border-radius: 10px;
+
+  background: #ff0000;
+  color: white;
+
+  font-size: 16px;
+  font-weight: 600;
+
+  cursor: pointer;
+
+  transition: 0.3s;
+}
+
+.uploadForm button:hover {
+  background: #d90000;
+}
+
+.uploadVideo {
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  background-color: #f9f9f9;
+  padding: 30px 15px;
+}
+
+.uploadForm {
+  width: 100%;
+  max-width: 650px;
+
+  background: white;
+
+  padding: 30px;
+
+  border-radius: 15px;
+
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+}
+
+.uploadForm h1 {
+  text-align: center;
+  margin-bottom: 25px;
+
+  color: #222;
+}
+
+.uploadForm input,
+.uploadForm textarea {
+  width: 100%;
+
+  padding: 12px 15px;
+
+  border: 1px solid #d3d3d3;
+  border-radius: 10px;
+
+  font-size: 15px;
+
+  box-sizing: border-box;
+
+  outline: none;
+
+  transition: 0.3s;
+}
+
+.uploadForm input:focus,
+.uploadForm textarea:focus {
+  border-color: #ff0000;
+}
+
+.uploadForm textarea {
+  min-height: 120px;
+  resize: vertical;
+}
+
+.uploadForm button {
+  width: 100%;
+
+  height: 45px;
+
+  border: none;
+  border-radius: 10px;
+
+  background: #ff0000;
+  color: white;
+
+  font-size: 16px;
+  font-weight: 600;
+
+  cursor: pointer;
+
+  transition: 0.3s;
+}
+
+.uploadForm button:hover {
+  background: #d90000;
+}
+
+#red{
+  background-color: #222;
+}
+
+/* Create Channel Page  */
+.createChannel {
+  min-height: 100vh;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  background: #f9f9f9;
+
+  padding: 30px 15px;
+}
+
+.channel {
+  width: 100%;
+  max-width: 650px;
+
+  background: white;
+
+  padding: 30px;
+
+  border-radius: 15px;
+
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+}
+
+.channel h1 {
+  text-align: center;
+
+  margin-bottom: 25px;
+
+  color: #222;
+}
+
+.channel input,
+.channel textarea {
+  width: 100%;
+
+  padding: 12px 15px;
+
+  margin-bottom: 15px;
+
+  box-sizing: border-box;
+
+  border: 1px solid #d3d3d3;
+  border-radius: 10px;
+
+  font-size: 15px;
+
+  outline: none;
+
+  transition: 0.3s;
+}
+
+.channel input:focus,
+.channel textarea:focus {
+  border-color: #ff0000;
+}
+
+.channel textarea {
+  min-height: 120px;
+  resize: vertical;
+}
+
+.channel button {
+  width: 100%;
+  height: 45px;
+
+  border: none;
+  border-radius: 10px;
+
+  background: #ff0000;
+  color: white;
+
+  font-size: 16px;
+  font-weight: 600;
+
+  cursor: pointer;
+
+  transition: 0.3s;
+}
+
+.channel button:hover {
+  background: #d90000;
+}
+
+   /* CHANNEL PAGE */
+
+.channelPage {
+  max-width: 1400px;
+  margin: auto;
+  padding: 20px;
+}
+
+.channelBanner img {
+  width: 100%;
+  height: 250px;
+  object-fit: cover;
+  border-radius: 15px;
+}
+
+.channelInfo {
+  padding: 20px 0;
+}
+
+.channelInfo h1 {
+  font-size: 32px;
+  margin-bottom: 10px;
+}
+
+.subscriberCount {
+  color: gray;
+  font-size: 15px;
+  margin-bottom: 10px;
+}
+
+.channelDescription {
+  font-size: 16px;
+  line-height: 1.6;
+}
+
+.videoHeading {
+  margin: 25px 0;
+}
+
+.noVideos {
+  font-size: 18px;
+  color: gray;
+}
+
+   /* VIDEOS GRID */
+
+.channelVideosGrid {
+  display: grid;
+  grid-template-columns:
+    repeat(auto-fill, minmax(300px, 1fr));
+
+  gap: 25px;
+}
+
+.channelVideoCard {
+  background: white;
+
+  border-radius: 15px;
+
+  overflow: hidden;
+
+  box-shadow:
+    0 2px 10px rgba(0, 0, 0, 0.08);
+
+  transition: 0.3s;
+}
+
+.channelVideoCard:hover {
+  transform: translateY(-5px);
+}
+
+.channelThumbnail {
+  width: 100%;
+  aspect-ratio: 16/9;
+  object-fit: cover;
+}
+
+.channelVideoCard h3 {
+  padding: 10px 15px 0;
+  font-size: 18px;
+}
+
+.channelVideoCard p {
+  padding: 0 15px;
+  color: gray;
+  font-size: 14px;
+}
+
+   /* BUTTONS */
+
+.videoActions {
+  display: flex;
+  gap: 10px;
+  padding: 15px;
+}
+
+.editBtn,
+.deleteBtn {
+  flex: 1;
+
+  height: 40px;
+
+  border: none;
+  border-radius: 8px;
+
+  cursor: pointer;
+
+  font-weight: 600;
+}
+
+.editBtn {
+  background: #f1f1f1;
+}
+
+.editBtn:hover {
+  background: #dddddd;
+}
+
+.deleteBtn {
+  background: #ff4d4d;
+  color: white;
+}
+
+.deleteBtn:hover {
+  background: #e53935;
+}
+
+.vidBtn{
+  font-size: larger;
+  margin-left: 10px;
+}
+
+
+   /* TABLET */
+
+@media (max-width: 1024px) {
+
+  .channelVideosGrid {
+    grid-template-columns:
+      repeat(2, 1fr);
+  }
+
+  .channelBanner img {
+    height: 200px;
+  }
+}
+
+   /* MOBILE */
+
+@media (max-width: 768px) {
+
+  .channelPage {
+    padding: 10px;
+  }
+
+  .channelBanner img {
+    height: 150px;
+  }
+
+  .channelInfo h1 {
+    font-size: 24px;
+  }
+
+  .channelVideosGrid {
+    grid-template-columns: 1fr;
+  }
+
+  .videoActions {
+    flex-direction: column;
+  }
+}
+
+   /* EDIT VIDEO PAGE */
+
+.edit {
+  min-height: 100vh;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  background: #f9f9f9;
+
+  padding: 30px 15px;
+}
+
+.editVideo {
+  width: 100%;
+  max-width: 700px;
+
+  background: white;
+
+  padding: 30px;
+
+  border-radius: 15px;
+
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.1);
+}
+
+.editVideo h1 {
+  text-align: center;
+
+  margin-bottom: 25px;
+
+  color: #222;
+}
+
+.editVideo input,
+.editVideo textarea {
+  width: 100%;
+
+  padding: 12px 15px;
+
+  border: 1px solid #ccc;
+  border-radius: 8px;
+
+  font-size: 16px;
+
+  box-sizing: border-box;
+}
+
+.editVideo input:focus,
+.editVideo textarea:focus {
+  outline: none;
+
+  border-color: #ff0000;
+}
+
+.editVideo textarea {
+  min-height: 120px;
+
+  resize: vertical;
+}
+
+.editVideo button {
+  width: 100%;
+
+  height: 45px;
+
+  border: none;
+  border-radius: 8px;
+
+  background: #ff0000;
+  color: white;
+
+  font-size: 16px;
+  font-weight: 600;
+
+  cursor: pointer;
+
+  transition: 0.3s;
+}
+
+.editVideo button:hover {
+  background: #d90000;
+}
+
+   /* TABLET */
+
+@media (max-width: 1024px) {
+  .editVideo {
+    max-width: 600px;
+  }
+}
+
+   /* MOBILE */
+
+@media (max-width: 768px) {
+  .edit {
+    padding: 20px 10px;
+  }
+
+  .editVideo {
+    padding: 20px;
+  }
+
+  .editVideo h1 {
+    font-size: 24px;
+  }
+
+  .editVideo input,
+  .editVideo textarea {
+    font-size: 14px;
+  }
+}
+   /* REGISTER PAGE */
+
+.register {
+  min-height: 100vh;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  background: #f9f9f9;
+
+  padding: 20px;
+}
+
+.registerPage {
+  width: 100%;
+  max-width: 450px;
+
+  background: white;
+
+  padding: 35px;
+
+  border-radius: 15px;
+
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.1);
+
+  display: flex;
+  flex-direction: column;
+
+  gap: 15px;
+}
+
+.registerPage h1 {
+  text-align: center;
+
+  color: #222;
+
+  margin-bottom: 15px;
+}
+
+.registerPage input {
+  width: 100%;
+
+  height: 45px;
+
+  padding: 0 15px;
+
+  border: 1px solid #ccc;
+  border-radius: 8px;
+
+  font-size: 15px;
+
+  box-sizing: border-box;
+}
+
+.registerPage input:focus {
+  outline: none;
+
+  border-color: #ff0000;
+}
+
+.registerPage button {
+  width: 100%;
+
+  height: 45px;
+
+  border: none;
+  border-radius: 8px;
+
+  background: #ff0000;
+  color: white;
+
+  font-size: 16px;
+  font-weight: 600;
+
+  cursor: pointer;
+
+  transition: 0.3s;
+}
+
+.registerPage button:hover {
+  background: #d90000;
+}
+
+.registerPage p {
+  text-align: center;
+
+  margin-top: 10px;
+
+  color: #555;
+}
+
+.registerPage a {
+  color: #ff0000;
+
+  text-decoration: none;
+
+  font-weight: 600;
+}
+
+.registerPage a:hover {
+  text-decoration: underline;
+}
+
+
+   /* VIDEO CARD */
+
+.videoDis {
+  width: 100%;
+}
+
+.videoCard {
+  width: 100%;
+
+  cursor: pointer;
+
+  transition: 0.3s;
+
+  border-radius: 12px;
+
+  overflow: hidden;
+}
+
+.videoCard:hover {
+  transform: translateY(-3px);
+}
+
+.thumbnail {
+  width: 100%;
+
+  aspect-ratio: 16/9;
+
+  object-fit: cover;
+
+  border-radius: 12px;
+}
+
+.videoInfo {
+  padding: 8px 4px;
+}
+
+.videoInfo h3 {
+  font-size: 16px;
+
+  margin: 0 0 6px;
+
+  line-height: 1.4;
+
+  display: -webkit-box;
+
+
+  overflow: hidden;
+}
+
+.videoInfo p {
+  margin: 3px 0;
+
+  color: #606060;
+
+  font-size: 14px;
+}
+
+   /* TABLET */
+
+@media (max-width: 1024px) {
+
+  .videoInfo h3 {
+    font-size: 15px;
+  }
+
+  .videoInfo p {
+    font-size: 13px;
+  }
+
+}
+
+   /* MOBILE */
+
+@media (max-width: 768px) {
+
+  .videoDis {
+    width: 100%;
+  }
+
+  .videoCard {
+    width: 100%;
+  }
+
+  .thumbnail {
+    width: 100%;
+  }
+
+  .videoInfo h3 {
+    font-size: 15px;
+  }
+
+  .videoInfo p {
+    font-size: 13px;
+  }
+
+}

@@ -1,8 +1,8 @@
-const express = require("express");
-const router = express.Router();
+import express from 'express'
+import Channel from '../models/Channel.js';
+import authMiddleware from "../middleware/authMiddleware.js";
 
-const Channel = require("../models/Channel");
-const authMiddleware = require("../middleware/authMiddleware");
+const router = express.Router();
 
 // Create Channel
 router.post(
@@ -57,4 +57,4 @@ router.get("/:id", async (req, res) => {
   }
 });
 
-module.exports = router;
+export default router;

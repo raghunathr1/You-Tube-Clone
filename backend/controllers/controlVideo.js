@@ -1,5 +1,5 @@
-const Video = require("../models/modelVideo");
-const Channel = require("../models/channel");
+import Video from "../models/modelVideo.js";
+import Channel from "../models/Channel.js";
 // Get All Videos
 const getAllVideos = async (req, res) => {
   try {
@@ -168,7 +168,76 @@ const deleteComment = async (req, res) => {
   }
 };
 
-module.exports = {
+const likeVideo = async (req, res) => {
+  try {
+    const video = await Video.findById(req.params.id);
+
+    const userId = req.user.userId;
+
+    if (
+      video.likedBy.some(
+        (id) => id.toString() === userId
+      )
+    ) {
+      return res.json({
+        message: "Already liked",
+      });
+    }
+
+    video.dislikedBy = video.dislikedBy.filter(
+      (id) => id.toString() !== userId
+    );
+
+    video.likedBy.push(userId);
+
+    video.likes = video.likedBy.length;
+    video.dislikes = video.dislikedBy.length;
+
+    await video.save();
+
+    res.json(video);
+  } catch (error) {
+    res.status(500).json({
+      message: error.message,
+    });
+  }
+};
+const dislikeVideo = async (req, res) => {
+  try {
+    const video = await Video.findById(req.params.id);
+
+    const userId = req.user.userId;
+
+    if (
+      video.dislikedBy.some(
+        (id) => id.toString() === userId
+      )
+    ) {
+      return res.json({
+        message: "Already disliked",
+      });
+    }
+
+    video.likedBy = video.likedBy.filter(
+      (id) => id.toString() !== userId
+    );
+
+    video.dislikedBy.push(userId);
+
+    video.likes = video.likedBy.length;
+    video.dislikes = video.dislikedBy.length;
+
+    await video.save();
+
+    res.json(video);
+  } catch (error) {
+    res.status(500).json({
+      message: error.message,
+    });
+  }
+};
+
+export default {
   getAllVideos,
   getVideoById,
   createVideo,
@@ -178,4 +247,6 @@ module.exports = {
   addComment,
   editComment,
   deleteComment,
+  likeVideo,
+  dislikeVideo,
 };

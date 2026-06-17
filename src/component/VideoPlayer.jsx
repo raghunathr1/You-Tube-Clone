@@ -1,17 +1,14 @@
 import { useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
 import axios from "axios";
+import { BiSolidLike } from "react-icons/bi";
+import { BiSolidDislike } from "react-icons/bi";
 
 function VideoPlayer() {
   const { id } = useParams();
-
   const [video, setVideo] = useState(null);
-  const [likes, setLikes] = useState(0);
-  const [dislikes, setDislikes] = useState(0);
-
   const [comment, setComment] = useState([]);
   const [newComment, setNewComment] = useState("");
-
   const [editIndex, setIndex] = useState(null);
   const [editText, setText] = useState("");
 
@@ -22,8 +19,6 @@ function VideoPlayer() {
         const data = res.data;
 
         setVideo(data);
-        setLikes(data.likes || 0);
-        setDislikes(data.dislikes || 0);
         setComment(data.comments || []);
       })
       .catch((err) => console.log(err));
@@ -80,6 +75,32 @@ function VideoPlayer() {
       console.log(error);
     }
   };
+  const handleLike = async () => {
+    const res = await axios.put(
+      `http://localhost:4000/api/videos/like/${id}`,
+      {},
+      {
+        headers: {
+          Authorization: localStorage.getItem("token"),
+        },
+      },
+    );
+
+    setVideo(res.data);
+  };
+  const handleDislike = async () => {
+    const res = await axios.put(
+      `http://localhost:4000/api/videos/dislike/${id}`,
+      {},
+      {
+        headers: {
+          Authorization: localStorage.getItem("token"),
+        },
+      },
+    );
+
+    setVideo(res.data);
+  };
 
   return (
     <div>
@@ -98,40 +119,53 @@ function VideoPlayer() {
 
       <p>{video.description}</p>
 
-      <button onClick={() => setLikes(likes + 1)}>👍 {likes}</button>
+      <button className="vidBtn" onClick={handleLike}>
+        <BiSolidLike /> {video.likes}
+      </button>
 
-      <button onClick={() => setDislikes(dislikes + 1)}>👎 {dislikes}</button>
-
-      <br />
-      <br />
+      <button className="vidBtn" onClick={handleDislike}>
+        <BiSolidDislike /> {video.dislikes}
+      </button>
 
       <input
+        className="vidBtn"
         type="text"
         placeholder="Add Comment"
         value={newComment}
         onChange={(e) => setNewComment(e.target.value)}
       />
 
-      <button onClick={handleAddComment}>Add Comment</button>
+      <button className="vidBtn" onClick={handleAddComment}>
+        Add Comment
+      </button>
 
       {comment.map((item, index) => (
         <div key={index}>
           {editIndex === index ? (
             <>
               <input
+                className="vidBtn"
                 value={editText}
                 onChange={(e) => setText(e.target.value)}
               />
 
-              <button onClick={handleSaveComment}>Save</button>
+              <button className="vidBtn" onClick={handleSaveComment}>
+                Save
+              </button>
             </>
           ) : (
             <>
-              <p>{item.text}</p>
-
-              <button onClick={() => handleDeleteComment(index)}>Delete</button>
+              <p className="vidBtn">{item.text}</p>
 
               <button
+                className="vidBtn"
+                onClick={() => handleDeleteComment(index)}
+              >
+                Delete
+              </button>
+
+              <button
+                className="vidBtn"
                 onClick={() => {
                   setIndex(index);
                   setText(item.text);

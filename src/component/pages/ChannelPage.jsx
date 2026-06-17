@@ -1,10 +1,11 @@
 import { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
-import { useNavigate } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 import axios from "axios";
+
 function ChannelPage() {
   const { id } = useParams();
   const navigate = useNavigate();
+
   const [channel, setChannel] = useState({});
   const [videos, setVideos] = useState([]);
 
@@ -20,64 +21,111 @@ function ChannelPage() {
       .catch((err) => console.log(err));
   }, [id]);
 
-  const handleDelete = async (id) => {
+  const handleDelete = async (videoId) => {
     const confirmDelete = window.confirm(
-      "Are you sure you want to delete this video?",
+      "Are you sure you want to delete this video?"
     );
 
     if (!confirmDelete) return;
 
     try {
-      await axios.delete(`http://localhost:4000/api/videos/${id}`, {
-        headers: {
-          Authorization: localStorage.getItem("token"),
-        },
-      });
+      await axios.delete(
+        `http://localhost:4000/api/videos/${videoId}`,
+        {
+          headers: {
+            Authorization: localStorage.getItem("token"),
+          },
+        }
+      );
 
-      setVideos(videos.filter((video) => video._id !== id));
+      setVideos(
+        videos.filter((video) => video._id !== videoId)
+      );
 
-      alert("Video Deleted");
+      alert("Video Deleted Successfully");
     } catch (error) {
       console.log(error);
+      alert("Failed To Delete Video");
     }
   };
+
   return (
-    <div style={{ padding: "20px" }}>
-      <img src={channel.channelBanner} alt="banner" width="100%" height="220" />
+    <div className="channelPage">
 
-      <h1>{channel.channelName}</h1>
+      {/* Banner */}
+      <div className="channelBanner">
+        <img
+          src={channel.channelBanner}
+          alt="banner"
+        />
+      </div>
 
-      <p>{channel.subscribers} Subscribers</p>
+      {/* Channel Info */}
+      <div className="channelInfo">
+        <h1>{channel.channelName}</h1>
 
-      <p>{channel.description}</p>
+        <p className="subscriberCount">
+          {channel.subscribers || 0} Subscribers
+        </p>
+
+        <p className="channelDescription">
+          {channel.description}
+        </p>
+      </div>
 
       <hr />
 
-      <h2>Channel Videos</h2>
+      <h2 className="videoHeading">
+        Channel Videos
+      </h2>
 
       {videos.length === 0 ? (
-        <p>No Videos Uploaded Yet</p>
+        <p className="noVideos">
+          No Videos Uploaded Yet
+        </p>
       ) : (
-        videos.map((video) => (
-          <div
-            key={video._id}
-            style={{
-              marginBottom: "20px",
-            }}
-          >
-            <h3>{video.title}</h3>
+        <div className="channelVideosGrid">
+          {videos.map((video) => (
+            <div
+              key={video._id}
+              className="channelVideoCard"
+            >
+              <img
+                src={video.thumbnailUrl}
+                alt={video.title}
+                className="channelThumbnail"
+              />
 
-            <img src={video.thumbnailUrl} alt={video.title} width="250" />
+              <h3>{video.title}</h3>
 
-            <p>{video.category}</p>
+              <p>{video.category}</p>
 
-            <p>{video.views} Views</p>
-            <button onClick={() => navigate(`/edit-video/${video._id}`)}>
-              Edit
-            </button>
-            <button onClick={() => handleDelete(video._id)}>Delete</button>
-          </div>
-        ))
+              <p>{video.views || 0} Views</p>
+
+              <div className="videoActions">
+                <button
+                  className="editBtn"
+                  onClick={() =>
+                    navigate(
+                      `/edit-video/${video._id}`
+                    )
+                  }
+                >
+                  Edit
+                </button>
+
+                <button
+                  className="deleteBtn"
+                  onClick={() =>
+                    handleDelete(video._id)
+                  }
+                >
+                  Delete
+                </button>
+              </div>
+            </div>
+          ))}
+        </div>
       )}
     </div>
   );

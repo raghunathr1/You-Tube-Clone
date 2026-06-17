@@ -29,6 +29,7 @@ function Login() {
     }
   };
   return (
+    <div className="login">
     <div className="authContainer">
       <h1>Sing In </h1>
       <input
@@ -47,6 +48,7 @@ function Login() {
       <p>
         Dont have Account? <Link to="/register">Register</Link>
       </p>
+    </div>
     </div>
   );
 }

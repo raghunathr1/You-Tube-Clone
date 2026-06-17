@@ -1,4 +1,4 @@
-const Channel = require("../models/channel");
+import Channel from "../models/Channel.js";
 
 const createChannel = async (req, res) => {
   try {
@@ -53,7 +53,4 @@ const getMyChannel = async (req, res) => {
   }
 };
 
-module.exports = {
-  createChannel,
-  getMyChannel,
-};
+export { createChannel, getMyChannel };

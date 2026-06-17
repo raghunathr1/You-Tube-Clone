@@ -55,7 +55,8 @@ function EditVideo() {
   };
 
   return (
-    <div style={{ padding: "20px" }}>
+    <div className="edit">
+    <div style={{ padding: "20px" }} className="editVideo">
       <h1>Edit Video</h1>
 
       <input
@@ -108,6 +109,7 @@ function EditVideo() {
       <br />
 
       <button onClick={handleUpdate}>Update Video</button>
+    </div>
     </div>
   );
 }

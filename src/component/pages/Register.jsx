@@ -27,7 +27,8 @@ function Register() {
     }
   };
   return (
-    <div className="authContainer">
+    <div className="register">
+    <div className="registerPage">
       <h1>Create Account </h1>
       <input
         type="text"
@@ -51,6 +52,7 @@ function Register() {
       <p>
         Already have Account ? <Link to="/login">Login</Link>{" "}
       </p>
+    </div>
     </div>
   );
 }

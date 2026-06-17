@@ -2,6 +2,7 @@ import { Link } from "react-router-dom"
 
 function VideoCard({ video }){
     return(
+        <div className="videoDis">
         <Link to={`video/${video._id}`} style={{textDecoration: "none", color: "black"}}>
         <div className="videoCard">
              <img src={video.thumbnailUrl} alt={video.title} className="thumbnail" />
@@ -13,6 +14,7 @@ function VideoCard({ video }){
 
         </div>
         </Link>
+        </div>
     )
 }
 export default VideoCard

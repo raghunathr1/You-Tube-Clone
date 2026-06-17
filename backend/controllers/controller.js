@@ -1,6 +1,6 @@
-const User = require('../models/user')
-const bcrypt = require('bcryptjs')
-const jwt = require('jsonwebtoken')
+import User from '../models/user.js';
+import bcrypt from "bcryptjs";
+import jwt from "jsonwebtoken";
 
 const registerUser = async (req , res)=>{
     try{
@@ -32,7 +32,7 @@ const loginUser = async(req , res)=>{
         }
         const isMatch = await bcrypt.compare(password, user.password)
         if (!isMatch){
-            res.status(400).json({message:'Invalid Credentials'})
+            return res.status(400).json({message:'Invalid Credentials'})
         }
         const token = jwt.sign(
              {
@@ -49,4 +49,4 @@ const loginUser = async(req , res)=>{
     }
 }
 
-module.exports = {registerUser , loginUser}
+export default {registerUser , loginUser}

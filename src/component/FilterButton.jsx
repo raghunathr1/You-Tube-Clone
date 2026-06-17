@@ -1,49 +1,32 @@
 function FilterButton({ category, setCategory, showSide }) {
+  const categories = [
+    "All",
+    "Songs",
+    "News And Politics",
+    "Cartoon",
+    "Coding Education",
+    "Travel and Vlog",
+    "Food and Cooking",
+    "Comedy",
+  ];
+
   return (
-    <div className={showSide ? "filterPage" : "filterPageFull"}>
-      <button className="filtBtn" onClick={() => setCategory("All")}>
-        All
-      </button>
-
-      <button className="filtBtn" onClick={() => setCategory("Songs")}>
-        Songs
-      </button>
-
-      <button
-        className="filtBtn"
-        onClick={() => setCategory("News And Politics")}
-      >
-        News And Politics
-      </button>
-
-      <button className="filtBtn" onClick={() => setCategory("Cartoon")}>
-        Cartoon
-      </button>
-
-      <button
-        className="filtBtn"
-        onClick={() => setCategory("Coding Education")}
-      >
-        Coding Education
-      </button>
-
-      <button
-        className="filtBtn"
-        onClick={() => setCategory("Travel and Vlog")}
-      >
-        Travel and Vlog
-      </button>
-
-      <button
-        className="filtBtn"
-        onClick={() => setCategory("Food and Cooking")}
-      >
-        Food And Cooking
-      </button>
-
-      <button className="filtBtn" onClick={() => setCategory("Comedy")}>
-        Comedy
-      </button>
+    <div
+      className={
+        showSide
+          ? "filterPage"
+          : "filterPageFull"
+      }
+    >
+      {categories.map((item) => (
+        <button
+          key={item}
+          className="filtBtn"
+          onClick={() => setCategory(item)}
+        >
+          {item}
+        </button>
+      ))}
     </div>
   );
 }

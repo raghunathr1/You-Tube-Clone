@@ -46,7 +46,8 @@ function CreateChannel() {
   };
 
   return (
-    <div>
+    <div className="createChannel">
+    <div className="channel">
       <h1>Create Channel</h1>
 
       <input
@@ -75,6 +76,7 @@ function CreateChannel() {
       <br />
 
       <button onClick={handleCreateChannel}>Create Channel</button>
+    </div>
     </div>
   );
 }
