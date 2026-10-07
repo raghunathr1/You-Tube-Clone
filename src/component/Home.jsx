@@ -11,7 +11,7 @@ function Home() {
 
   useEffect(() => {
     axios
-      .get("http://localhost:4000/api/videos")
+      .get("https://you-tube-clone-o7sb.onrender.com/api/videos")
       .then((res) => setVideos(res.data))
       .catch((err) => console.log(err));
   }, []);

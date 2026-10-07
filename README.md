@@ -22,7 +22,7 @@
 - cd backend  (. backend Folder)
 - nodemoo server.js
 - Server will run on:
-- http://localhost:4000
+- https://you-tube-clone-o7sb.onrender.com
 5. Start Frontend
 - Open another terminal:
 cd YouTube (fronetnd folder)

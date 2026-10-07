@@ -24,7 +24,7 @@ function UploadVideo() {
 
     try {
       const response = await axios.post(
-        "http://localhost:4000/api/videos/upload",
+        "https://you-tube-clone-o7sb.onrender.com/api/videos/upload",
         {
           title,
           description,

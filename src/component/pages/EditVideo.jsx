@@ -14,7 +14,7 @@ function EditVideo() {
 
   useEffect(() => {
     axios
-      .get(`http://localhost:4000/api/videos/${id}`)
+      .get(`https://you-tube-clone-o7sb.onrender.com/api/videos/${id}`)
       .then((res) => {
         const data = res.data;
 
@@ -30,7 +30,7 @@ function EditVideo() {
   const handleUpdate = async () => {
     try {
       await axios.put(
-        `http://localhost:4000/api/videos/${id}`,
+        `https://you-tube-clone-o7sb.onrender.com/api/videos/${id}`,
         {
           title,
           description,

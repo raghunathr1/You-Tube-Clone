@@ -14,7 +14,7 @@ function VideoPlayer() {
 
   useEffect(() => {
     axios
-      .get(`http://localhost:4000/api/videos/${id}`)
+      .get(`https://you-tube-clone-o7sb.onrender.com/api/videos/${id}`)
       .then((res) => {
         const data = res.data;
 
@@ -33,7 +33,7 @@ function VideoPlayer() {
 
     try {
       const response = await axios.post(
-        `http://localhost:4000/api/videos/${id}/comment`,
+        `https://you-tube-clone-o7sb.onrender.com/api/videos/${id}/comment`,
         {
           text: newComment,
         },
@@ -49,7 +49,7 @@ function VideoPlayer() {
   const handleDeleteComment = async (index) => {
     try {
       const response = await axios.delete(
-        `http://localhost:4000/api/videos/${id}/comment/${index}`,
+        `https://you-tube-clone-o7sb.onrender.com/api/videos/${id}/comment/${index}`,
       );
 
       setComment(response.data.comments);
@@ -61,7 +61,7 @@ function VideoPlayer() {
   const handleSaveComment = async () => {
     try {
       const response = await axios.put(
-        `http://localhost:4000/api/videos/${id}/comment/${editIndex}`,
+        `https://you-tube-clone-o7sb.onrender.com/api/videos/${id}/comment/${editIndex}`,
         {
           text: editText,
         },
@@ -77,7 +77,7 @@ function VideoPlayer() {
   };
   const handleLike = async () => {
     const res = await axios.put(
-      `http://localhost:4000/api/videos/like/${id}`,
+      `https://you-tube-clone-o7sb.onrender.com/api/videos/like/${id}`,
       {},
       {
         headers: {
@@ -90,7 +90,7 @@ function VideoPlayer() {
   };
   const handleDislike = async () => {
     const res = await axios.put(
-      `http://localhost:4000/api/videos/dislike/${id}`,
+      `https://you-tube-clone-o7sb.onrender.com/api/videos/dislike/${id}`,
       {},
       {
         headers: {

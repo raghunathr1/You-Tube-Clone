@@ -11,12 +11,12 @@ function ChannelPage() {
 
   useEffect(() => {
     axios
-      .get(`http://localhost:4000/api/channel/${id}`)
+      .get(`https://you-tube-clone-o7sb.onrender.com/api/channel/${id}`)
       .then((res) => setChannel(res.data))
       .catch((err) => console.log(err));
 
     axios
-      .get(`http://localhost:4000/api/videos/channel/${id}`)
+      .get(`https://you-tube-clone-o7sb.onrender.com/api/videos/channel/${id}`)
       .then((res) => setVideos(res.data))
       .catch((err) => console.log(err));
   }, [id]);
@@ -30,7 +30,7 @@ function ChannelPage() {
 
     try {
       await axios.delete(
-        `http://localhost:4000/api/videos/${videoId}`,
+        `https://you-tube-clone-o7sb.onrender.com/api/videos/${videoId}`,
         {
           headers: {
             Authorization: localStorage.getItem("token"),

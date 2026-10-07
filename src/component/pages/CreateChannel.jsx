@@ -13,7 +13,7 @@ function CreateChannel() {
       const token = localStorage.getItem("token");
 
       const response = await axios.post(
-        "http://localhost:4000/api/channel/create",
+        "https://you-tube-clone-o7sb.onrender.com/api/channel/create",
         {
           channelName,
           description,

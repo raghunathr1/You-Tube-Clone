@@ -14,24 +14,35 @@ dotenv.config();
 
 const app = express();
 
-app.use(cors());
+// CORS Configuration
+app.use(
+    cors({
+        origin: "https://you-tube-clone-three-snowy.vercel.app",
+        credentials: true,
+    })
+);
+
 app.use(express.json());
 
+// Routes
 app.use("/api/auth", authRoute);
 app.use("/api/videos", videoRoute);
 app.use("/api/channel", channelRoutes);
 
+// MongoDB Connection
 mongoose
     .connect(process.env.MONGO_URI)
     .then(() => console.log("Database Connected"))
     .catch((err) => console.log(err));
 
+// Test API
 app.get("/", (req, res) => {
     res.send("Api Running");
 });
 
+// Server
 const PORT = process.env.PORT || 4000;
 
-app.listen(PORT, () => {
+app.listen(PORT, "0.0.0.0", () => {
     console.log(`Server Running on ${PORT}`);
 });
