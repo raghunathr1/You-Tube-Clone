@@ -1,10 +1,10 @@
+
 import { useState } from "react";
 import { IoMenu } from "react-icons/io5";
-import { FaSearch } from "react-icons/fa";
+import { FaSearch, FaUserAlt } from "react-icons/fa";
 import { CgMathPlus } from "react-icons/cg";
 import { IoMdNotificationsOutline } from "react-icons/io";
 import { GrMicrophone } from "react-icons/gr";
-import { FaUserAlt } from "react-icons/fa";
 import FilterButton from "./FilterButton";
 import { Link, useNavigate } from "react-router-dom";
 
@@ -31,16 +31,15 @@ function Header({
     localStorage.removeItem("channelId");
     localStorage.removeItem("channelName");
 
+    setShowMenu(false);
     navigate("/login");
-
-    window.location.reload();
   };
 
   const handleCreate = () => {
     const token = localStorage.getItem("token");
 
     if (!token) {
-      alert("Please Login First");
+      alert("Please login first");
       navigate("/login");
       return;
     }
@@ -55,76 +54,128 @@ function Header({
   };
 
   const handleMyChannel = () => {
+    const token = localStorage.getItem("token");
     const channelId = localStorage.getItem("channelId");
 
+    if (!token) {
+      alert("Please login first");
+      navigate("/login");
+      return;
+    }
+
     if (!channelId) {
-      alert("Please Create Channel First");
+      alert("Please create your channel first");
       navigate("/create-channel");
       return;
     }
 
+    setShowMenu(false);
     navigate(`/channel/${channelId}`);
+  };
+
+  const handleUpload = () => {
+    const token = localStorage.getItem("token");
+
+    if (!token) {
+      alert("Please login first");
+      navigate("/login");
+      return;
+    }
+
+    setShowMenu(false);
+    navigate("/upload-video");
   };
 
   return (
     <div className="mobileSearch">
       <nav className="nav">
+
+        {/* Logo and Sidebar */}
         <div className="logoD">
           <button
+            type="button"
             onClick={toggleHide}
+            aria-label="Toggle sidebar"
             style={{
               border: "none",
               backgroundColor: "white",
               fontSize: "35px",
+              cursor: "pointer",
             }}
           >
             <IoMenu />
           </button>
 
           <div className="logo">
-            <img
-              src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/b8/YouTube_Logo_2017.svg/1280px-YouTube_Logo_2017.svg.png"
-              height="25px"
-              width="100px"
-              alt="YouTube"
-            />
+            <Link
+              to="/"
+              aria-label="VideoHub Home"
+              style={{
+                textDecoration: "none",
+                color: "inherit",
+              }}
+            >
+              <span
+                className="brandName"
+                style={{
+                  fontSize: "24px",
+                  fontWeight: "bold",
+                  color: "#222",
+                }}
+              >
+                VideoHub
+              </span>
+            </Link>
           </div>
         </div>
 
+        {/* Search */}
         <div className="searchContainer">
           <input
             type="text"
-            placeholder="Search"
+            placeholder="Search videos"
             className="headInput"
             value={search}
             onChange={(e) => setSearch(e.target.value)}
+            aria-label="Search videos"
           />
 
-          <button id="headBtn">
+          <button
+            type="button"
+            id="headBtn"
+            aria-label="Search"
+          >
             <FaSearch />
           </button>
 
-          <button id="microPhone">
+          <button
+            type="button"
+            id="microPhone"
+            aria-label="Voice search"
+          >
             <GrMicrophone />
           </button>
         </div>
 
+        {/* User Actions */}
         <div id="endBtn">
+
           {isLoggedIn ? (
-            <div
-              style={{
-                position: "relative",
-              }}
-            >
+            <div style={{ position: "relative" }}>
+
               <button
+                type="button"
                 className="createBtn"
                 onClick={() => setShowMenu(!showMenu)}
+                aria-expanded={showMenu}
+                aria-haspopup="true"
               >
                 {username}
               </button>
 
               {showMenu && (
                 <div
+                  role="menu"
                   style={{
                     position: "absolute",
                     top: "45px",
@@ -140,34 +191,63 @@ function Header({
                     zIndex: 1000,
                   }}
                 >
-                  <button onClick={handleMyChannel}>My Channel</button>
+                  <button
+                    type="button"
+                    role="menuitem"
+                    onClick={handleMyChannel}
+                  >
+                    My Channel
+                  </button>
 
-                  <button onClick={() => navigate("/upload-video")}>
+                  <button
+                    type="button"
+                    role="menuitem"
+                    onClick={handleUpload}
+                  >
                     Upload Video
                   </button>
 
-                  <button onClick={handleLogout}>Logout</button>
+                  <button
+                    type="button"
+                    role="menuitem"
+                    onClick={handleLogout}
+                  >
+                    Logout
+                  </button>
                 </div>
               )}
             </div>
           ) : (
             <Link to="/login">
-              <button className="createBtn">
+              <button
+                type="button"
+                className="createBtn"
+              >
                 <FaUserAlt /> Sign In
               </button>
             </Link>
           )}
 
-          <button className="createBtn" onClick={handleCreate}>
+          <button
+            type="button"
+            className="createBtn"
+            onClick={handleCreate}
+          >
             <CgMathPlus /> Create
           </button>
 
-          <button id="notification">
+          <button
+            type="button"
+            id="notification"
+            aria-label="Notifications"
+          >
             <IoMdNotificationsOutline />
           </button>
+
         </div>
       </nav>
 
+      {/* Video Categories */}
       <FilterButton
         category={category}
         setCategory={setCategory}
